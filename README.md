@@ -11,9 +11,9 @@ It allows to edit and run jupyter notebooks easily.
 To generate a link that opens noto, automatically clones (or pulls) this repo, and opens a given notebook, you can use this [link generator](https://nbgitpuller.readthedocs.io/en/latest/link.html), with parameters
 
     JupterHub URL: https://noto.epfl.ch
-    Git repository URL: https://github.com/SPOC-group/phys-231-exercises
+    Git repository URL: https://github.com/SPOC-group/phys-467-exercises
     Branch: main
-    File to open: path to the notebook that must be opened, relative to the root of the git directory. For example "lecture1/file_name.ipynb"
+    File to open: path to the notebook that must be opened, relative to the root of the git directory. For example "Exercise_1/file_name.ipynb"
     Application to open: JupyterLab
     Named Server to open: blank
 
