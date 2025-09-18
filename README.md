@@ -1,5 +1,7 @@
 
-# phys-467-exercises -- fall semester 2025
+# phys-467-exercises
+
+## All years
 
 Repository for the exercise sessions for the phys-467 class at EPFL, fall semester 2024.
 
