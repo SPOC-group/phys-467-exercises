@@ -1,0 +1,80 @@
+name: GitHub Classroom Workflow
+
+on:
+  push:
+    branches:
+      - 'main'
+
+  pull_request:
+    branches:
+      - '*'
+
+defaults:
+  run:
+    shell: bash -l {0}
+
+jobs:
+  build:
+    name: Autograding
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Mambaforge and Install Dependencies
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+            miniforge-variant: Mambaforge
+            miniforge-version: latest
+            activate-environment: ""
+            auto-activate-base: true
+            use-mamba: true
+
+      - name: Update environment
+        run: mamba env update -n base -f environment.yml
+
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
+
+      - uses: education/autograding@v1
+        id: autograder
+        continue-on-error: true
+
+      # switch to badges branch
+      - name: Switch branch
+        run: |
+          cp -r results .github/results
+          git add .github/results
+          git stash
+          git checkout badges || git checkout -b badges
+          git rm -r .github/results
+          git checkout stash -- .github/results
+          git add .github/results
+        continue-on-error: true
+
+      # create points bar
+      - name: points bar
+        uses: markpatterson27/points-bar@v1
+        with:
+          points: ${{ steps.autograder.outputs.points }}
+          path: '.github/badges/points-bar.svg'
+          type: 'badge'
+          label: 'Autograde'
+
+      # commit and push badges if badges have changed
+      - name: Commit changes to points bar and plots
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add '.github/badges/points-bar.svg'
+          git commit -m "Add/Update points bar and plots" || exit 0
+          git push origin badges
+        continue-on-error: true
+      
+
+      - name: Check on failures
+        if: steps.autograder.outcome == 'failure'
+        run: echo "Not all tests passed" && exit 1

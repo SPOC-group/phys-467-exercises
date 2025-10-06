@@ -1,0 +1,64 @@
+{
+  "tests": [
+    {
+      "name": "1. Preprocessing",
+      "setup": "",
+      "run": "PYTHONPATH=. pytest tests/test_loading.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    },
+    {
+      "name": "2. Linear Regression Fit",
+      "setup": "",
+      "run": "PYTHONPATH=. pytest tests/test_regression.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 8
+    },
+    {
+      "name": "3. Helper functions",
+      "setup": "",
+      "run": "PYTHONPATH=. pytest tests/test_helper.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 8
+    },
+    {
+      "name": "6. Hyperparameters",
+      "setup": "",
+      "run": "PYTHONPATH=. pytest tests/test_optimizer.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 4
+    },
+    {
+      "name": "7. Polynomial Features",
+      "setup": "",
+      "run": "PYTHONPATH=. pytest tests/test_poly.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3
+    },
+    {
+      "name": "main.py exits with code 0",
+      "setup": "",
+      "run": "python main.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 0
+    }
+  ]
+}
