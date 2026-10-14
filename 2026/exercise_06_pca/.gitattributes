@@ -1,0 +1,2 @@
+# Keep the self-contained teaching dataset in ordinary Git, not Git LFS.
+data/velocities_small.npz -filter -diff -merge -text
